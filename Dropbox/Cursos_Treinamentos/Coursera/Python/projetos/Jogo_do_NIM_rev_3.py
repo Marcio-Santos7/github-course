@@ -91,3 +91,6 @@ if ( tipo_jogo == 2):
     partida()
 else:
     pass
+
+""" As funções usuario_escolhe_jogada e computador_escolhe_jogada não estão retornando os valores contando o numero de peças
+ tirados, preciso corrigir para que os valores das peças tiradas sejam contabilizadas na função partida."""
