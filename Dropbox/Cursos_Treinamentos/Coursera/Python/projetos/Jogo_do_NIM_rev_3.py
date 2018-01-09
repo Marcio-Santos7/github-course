@@ -8,25 +8,26 @@ rodada = 0
 
 def computador_escolhe_jogada(n, m):
     global computador
-    n = n - m
-    if (n == 1):
-        print(" ")
-        print("O computador tirou %s peça." % n)
-        print("Agora restam %s peças no tabuleiro." % n)
-        print(" ")
-        if (n == 0):
-            print ("Fim do jogo! O computador ganhou!")
-            partida()
-    else:
+    if (((n) %(m+1)) == 0):
+        n = n - m
         print(" ")
         print("O computador tirou %s peça." % m)
         print("Agora restam %s peças no tabuleiro." % n)
         print(" ")
         if (n == 0):
             print ("Fim do jogo! O computador ganhou!")
-            partida()
+        pass
+    else:
+        n = n - 1
+        print(" ")
+        print("O computador tirou uma peça.")
+        print("Agora restam %s peças no tabuleiro." % n)
+        print(" ")
+        if (n == 0):
+            print ("Fim do jogo! O computador ganhou!")
+        pass
     return n
-    return m
+
 
 
 def usuario_escolhe_jogada(n, m):
@@ -34,23 +35,26 @@ def usuario_escolhe_jogada(n, m):
     print(" ")
     n_user = int(input("Quantas peças você vai tirar? "))
     if (n_user <= m):
-        n = n - m
+        n = n - n_user
         print(" ")
         print("Voce tirou %s peças." % n_user)
         print("Agora restam apenas %s peças no tabuleiro." % n)
+        if (n == 0):
+            print("Vitoria do usuario")
+        pass
     else:
         while (n_user > m):
             print(" ")
             print("Oops! Jogada inválida! Tente de novo.")
             print(" ")
             n_user = int(input("Quantas peças você vai tirar? "))
+            n = n - n_user
             print("Voce tirou %s peças." % n_user)
             print("Agora restam apenas %s peças no tabuleiro." % n)
-    if (n == 0):
-        print ("Vitoria do usuario")
-    return n_user
+            if (n == 0):
+                print ("Vitoria do usuario")
+            break
     return n
-    return m
 
 def partida():
     global computador
@@ -72,8 +76,7 @@ def partida():
         print("Computador Começa!!")
         while( n > 0):
             computador_escolhe_jogada(n,m)
-            if n > 0:
-                usuario_escolhe_jogada(n,m)
+            usuario_escolhe_jogada(n,m)
 
 # Programa Principal
 
@@ -94,3 +97,5 @@ else:
 
 """ As funções usuario_escolhe_jogada e computador_escolhe_jogada não estão retornando os valores contando o numero de peças
  tirados, preciso corrigir para que os valores das peças tiradas sejam contabilizadas na função partida."""
+"""O parâmetro n não está sendo carregado entre as funções, continua sempre com o mesmo valor do início da partida, preciso 
+saber como atualizar a variável n"""
